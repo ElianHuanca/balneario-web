@@ -1,0 +1,277 @@
+* {
+  /* border: 1px solid black; */
+  /* margin: 0px;
+  padding: 0px; */
+  /* transition: .3s ease all; */
+}
+
+/* MODO kid O */
+body.kid-lm nav {
+  background-color: white;
+}
+body.kid-dm nav {
+  background-color: #F6F8FC;
+}
+
+/* texto li */
+body.kid-lm li > a {
+  color: black;
+}
+body.kid-dm li > a {
+  color: black;
+  /* color: #c0c2c4; */
+}
+body.kid-lm a.navbar-brand {
+  color: black;
+}
+body.kid-dm a.navbar-brand {
+  color: black;
+}
+
+/* select */
+body.kid-lm nav select {
+  background-color: #ffff01;
+  border: 1px solid black;
+  border-radius: 20px;
+  color: black;
+  padding: 3px 15px;
+  /* font-weight: bolder ; */
+}
+body.kid-dm nav select {
+  background-color: #ffff01;
+  border: 1px solid black;
+  border-radius: 20px;
+  color: black;
+  padding: 3px 15px;
+  opacity: 0.6;
+}
+body.kid-lm nav button {
+  background-color: transparent;
+  border: 1px solid white !important;
+  color: black !important;
+}
+body.kid-lm  nav :hover {
+  background-color: #FF8B13;
+  color: white;
+}
+body.kid-dm  nav :hover {
+  background-color: #FF8B13;
+  color: white;
+} 
+
+
+
+/* fondo1 (el de mas atrás) */
+body.kid-dm main {
+  background-color: #dcdcdc;
+}
+/* fondo2 */
+body.kid-dm div.card-body {
+  background-color: #EEEAE4;
+}
+body.kid-dm div.container-fluid {
+  background-color: #EEEAE4;
+  border: 1px solid #C0C2C4 !important;
+}
+body.kid-dm div.col-7, body.kid-dm div.col-4 {
+  border-color: #C0C2C4 !important;
+}
+
+
+body.kid-dm button.mb-2 {
+  background-color: #343A40;
+}
+/* volver */
+body.kid-lm div.card-body > button {
+  border: 1px solid black;
+  border-radius: 25px;
+  background-color: #FF8B13;
+}
+body.kid-dm div.card-body > button {
+  border: 1px solid black;
+  border-radius: 25px;
+  background-color: #FF8B13;
+  opacity: 0.8;
+}
+
+/* footer background */
+body.kid-lm div.footer-1 {
+  background-color: #FF8B13;
+  color: black;
+}
+body.kid-dm div.footer-1 {
+  background-color: #FF8B13;
+  opacity: 0.8;
+}
+body.kid-lm div.footer-2 {
+  background-color: #FF5E78;
+}
+body.kid-dm div.footer-2 {
+  background-color: #FF5E78;
+}
+.f-btn {
+  border: none !important;
+  background: transparent;
+}
+
+/* boton nuevo en index */
+body.kid-dm div.card-header {
+  background-color: #E9E9E9;
+}
+body.kid-lm div.card-header > a {
+  background-color: #00FFD1;
+  border: 1px solid black;
+  border-radius: 25px;
+  color: black;
+  font-weight: normal;
+}
+body.kid-dm div.card-header > a {
+  background-color: #00FFD1;
+  border: 1px solid black;
+  border-radius: 25px;
+  opacity: 0.8;
+  color: black;
+  font-weight: normal;
+}
+
+/* FOOTER COLOR ORIGINAL */
+/* background-color: #7b1fa2; */
+
+
+body.kid-dm input {
+  background-color: #f5f5f5;
+}
+
+
+/* ELEMENTOS individuales */
+
+/* index */
+body.kid-lm a.edit-b {
+  background-color: #00FFD1;
+  border: 1px solid black;
+  border-radius: 25px;
+  color: black;
+}
+body.kid-lm a.ver-b {
+  background-color: #FF8B13;
+  border: 1px solid black;
+  border-radius: 25px;
+  color: black;
+}
+body.kid-lm button.eliminar-b {
+  background-color: #FF5E78;
+  border: 1px solid black;
+  border-radius: 25px;
+  color: white;
+}
+
+body.kid-dm a.edit-b {
+  background-color: #00FFD1;
+  opacity: 0.8;
+  border: 1px solid black;
+  border-radius: 25px;
+  color: black;
+}
+body.kid-dm a.ver-b {
+  background-color: #FF8B13;
+  opacity: 0.8;
+  border: 1px solid black;
+  border-radius: 25px;
+  color: black;
+}
+body.kid-dm button.eliminar-b {
+  background-color: #FF5E78;
+  opacity: 0.8;
+  border: 1px solid black;
+  border-radius: 25px;
+  color: black;
+}
+
+/* body.kid-dm a.edit-b, body.kid-dm a.ver-b, body.kid-dm button.eliminar-b {
+  background-color: #343A40;
+  color: white;
+} */
+
+/* create */
+body.kid-lm button.submit-b {
+  background-color: #00FFD1;
+  border: 1px solid black;
+  border-radius: 25px;
+  color: black;
+}
+body.kid-lm button.volver-b{
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 25px;
+  color: black;
+}
+body.kid-lm button.volver-b > a {
+  color: black;
+}
+body.kid-dm button.submit-b {
+  background-color: #00FFD1;
+  border: 1px solid black;
+  border-radius: 25px;
+  opacity: 0.8;
+  color: black;
+}
+body.kid-dm button.volver-b {
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 25px;
+  color: black;
+  opacity: 0.8;
+}
+body.kid-dm button.volver-b > a {
+  color: black;
+}
+
+/* ver */
+body.kid-lm button.show-mantenimiento-b {
+  background-color: white;
+  font-weight: bold;
+}
+body.kid-lm button.show-editar-b {
+  background-color: #00FFD1;
+  border: 1px solid black;
+  border-radius: 25px;
+  color: black;
+}
+body.kid-dm button.show-mantenimiento-b {
+  background-color: white;
+  opacity: 0.8;
+}
+body.kid-dm button.show-editar-b {
+  background-color: #00FFD1;
+  border: 1px solid black;
+  border-radius: 25px;
+  opacity: 0.8;
+}
+body.kid-lm button.show-editar-b > a{
+  color: black !important;
+}
+body.kid-dm button.show-editar-b > a{
+  color: black !important;
+}
+
+body.kid-lm a.button-editar, body.kid-dm a.button-editar{
+  color: black !important;
+}
+
+
+/* Text sizes */
+.f0 {
+  font-size: 0.8rem;
+}
+.f1 {
+  font-size: 0.9rem;
+}
+.f2 {
+  font-size: 1rem;
+}
+.f3 {
+  font-size: 1.1rem;
+}
+.f4 {
+  font-size: 1.2rem;
+}

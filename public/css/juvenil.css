@@ -1,0 +1,219 @@
+* {
+  /* border: 1px solid black; */
+  /* margin: 0px;
+  padding: 0px; */
+  /* transition: .3s ease all; */
+}
+
+/* MODO youth O */
+body.youth-lm nav {
+  background-color: #0096FF;
+}
+body.youth-dm nav {
+  background-color: #2778B0;
+}
+
+/* texto li */
+body.youth-lm li > a {
+  color: white;
+}
+body.youth-dm li > a {
+  color: white;
+  /* color: #c0c2c4; */
+}
+body.youth-lm a.navbar-brand {
+  color: white;
+}
+body.youth-dm a.navbar-brand {
+  color: white;
+}
+
+/* select */
+body.youth-lm nav select {
+  background-color: #f2f2f2;
+  color: black;
+  /* font-weight: bolder ; */
+}
+body.youth-dm nav select {
+  color: black;
+}
+body.youth-lm nav button {
+  background-color: transparent;
+  border: 1px solid white !important;
+  color: white !important;
+} 
+
+/* fondo1 (el de mas atrás) */
+body.youth-dm main {
+  background-color: #dcdcdc;
+}
+/* fondo2 */
+body.youth-dm div.card-body {
+  background-color: #EEEAE4;
+}
+body.youth-dm div.container-fluid {
+  background-color: #EEEAE4;
+  border: 1px solid #C0C2C4 !important;
+}
+body.youth-dm div.col-7, body.youth-dm div.col-4 {
+  border-color: #C0C2C4 !important;
+}
+
+
+body.youth-dm button.mb-2 {
+  background-color: #343A40;
+}
+/* volver */
+body.youth-lm div.card-body > button {
+  background-color: #0096FF;
+}
+body.youth-dm div.card-body > button {
+  background-color: #343A40;
+}
+
+/* footer background */
+body.youth-lm div.footer-1 {
+  border: 2px solid #dee2e6;
+  background-color: #f2f2f2;
+  color: black;
+}
+body.youth-dm div.footer-1 {
+  background-color: #f2f2f2;
+  opacity: 0.8;
+}
+body.youth-lm div.footer-2 {
+  background-color: #0096FF;
+}
+body.youth-dm div.footer-2 {
+  background-color: #343A40;
+}
+.f-btn {
+  border: none !important;
+  background: transparent;
+}
+
+/* boton nuevo en index */
+body.youth-dm div.card-header {
+  background-color: #E9E9E9;
+}
+body.youth-lm div.card-header > a {
+  background-color: #1B7FBD;
+  color: white;
+  font-weight: bold;
+}
+body.youth-dm div.card-header > a {
+  background-color: #1B7FBD;
+  opacity: 0.8;
+  color: white;
+  font-weight: bold;
+}
+
+/* FOOTER COLOR ORIGINAL */
+/* background-color: #7b1fa2; */
+
+
+body.youth-dm input {
+  background-color: #f5f5f5;
+}
+
+
+/* ELEMENTOS individuales */
+
+/* index */
+body.youth-lm a.edit-b {
+  background-color: #1B7FBD;
+  color: white;
+}
+body.youth-lm a.ver-b {
+  border: 1px solid black;
+  background-color: #f2f2f2;
+  color: black;
+}
+body.youth-lm button.eliminar-b {
+  background-color: #F34949;
+  color: white;
+}
+
+body.youth-dm a.edit-b {
+  
+  background-color: #1B7FBD;
+  opacity: 0.8;
+  color: white;
+}
+body.youth-dm a.ver-b {
+  border: 1px solid grey;
+  background-color: #f2f2f2;
+  opacity: 0.8;
+  color: black;
+}
+body.youth-dm button.eliminar-b {
+  background-color: #F34949;
+  opacity: 0.8;
+  color: white;
+}
+
+/* body.youth-dm a.edit-b, body.youth-dm a.ver-b, body.youth-dm button.eliminar-b {
+  background-color: #343A40;
+  color: white;
+} */
+
+/* create */
+body.youth-lm button.submit-b {
+  background-color: #1B7FBD;
+  color: white;
+}
+body.youth-lm button.volver-b {
+  background-color: #0096FF;
+  color: white;
+}
+body.youth-dm button.submit-b {
+  background-color: #1B7FBD;
+  opacity: 0.8;
+  color: white;
+}
+body.youth-dm button.volver-b {
+  background-color: #0096FF;
+  opacity: 0.8;
+  color: white;
+}
+
+/* ver */
+body.youth-lm button.show-mantenimiento-b {
+  background-color: #0096FF;
+  font-weight: bold;
+}
+body.youth-lm button.show-editar-b {
+  background-color: #1B7FBD;
+  font-weight: bold;
+}
+body.youth-dm button.show-mantenimiento-b {
+  background-color: #0096FF;
+  opacity: 0.8;
+  font-weight: bold;
+}
+body.youth-dm button.show-editar-b {
+  background-color: #1B7FBD;
+  opacity: 0.8;
+  font-weight: bold;
+}
+
+
+
+
+/* Text sizes */
+.f0 {
+  font-size: 0.8rem;
+}
+.f1 {
+  font-size: 0.9rem;
+}
+.f2 {
+  font-size: 1rem;
+}
+.f3 {
+  font-size: 1.1rem;
+}
+.f4 {
+  font-size: 1.2rem;
+}
+
