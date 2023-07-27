@@ -15,7 +15,7 @@
                 @csrf
                 <div class="row g-2">
 
-                    <div class="col-6 position-relative">
+                    {{-- <div class="col-6 position-relative">
                         <label for="fecha_ini">Ingrese la fecha de inicio</label>
                         <input type="date" name="fecha_ini" class="form-control"> <br>
                         @error('fecha_ini')
@@ -31,19 +31,34 @@
                             <small class="text-danger">*{{ $message }}</small>
                             <br><br>
                         @enderror
-                    </div>
+                    </div> --}}
 
-                    <div class="col-6 position-relative">
+                    {{-- <div class="col-6 position-relative">
                         <label for="iduser">Ingrese el usuario</label>
                         <input type="text" name="iduser" class="form-control"> <br>
                         @error('iduser')
                             <small class="text-danger">*{{ $message }}</small>
                             <br><br>
                         @enderror
-                    </div>
+                    </div> --}}
+
                     <div class="col-6 position-relative">
-                        <label for="idtipomembresia">Ingrese la membresia</label>
-                        <input type="text" name="idtipomembresia" class="form-control"> <br>
+                        <label for="tipo_pago">Ingrese el tipo pago</label>
+                        <input type="text" name="tipo_pago" class="form-control"> <br>
+                        @error('tipo_pago')
+                            <small class="text-danger">*{{ $message }}</small>
+                            <br><br>
+                        @enderror
+                    </div>
+
+                    <div class="col-6 position-relative">
+                        <label for="idtipomembresia">Ingrese la membresia que desea</label>
+                        {{-- <input type="text" name="idtipomembresia" class="form-control"> <br> --}}
+                        <select name="idtipomembresia" class="form-control">
+                            @foreach($tipos as $tipo)
+                                <option value="{{ $tipo->id }}">{{ $tipo->nombre }}</option>
+                            @endforeach
+                        </select>
                         @error('idtipomembresia')
                             <small class="text-danger">*{{ $message }}</small>
                             <br><br>

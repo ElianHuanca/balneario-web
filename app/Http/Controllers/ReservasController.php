@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ambientes;
 use App\Models\Pagina;
+use App\Models\Pagos;
 use App\Models\Reservas;
 use Illuminate\Http\Request;
 
@@ -28,7 +30,8 @@ class ReservasController extends Controller
     public function create()
     {
         Pagina::contarPagina(\request()->path());
-        return view('reserva.create');
+        $ambientes=Ambientes::all();
+        return view('reserva.create',compact('ambientes'));
     }
 
     /**
@@ -43,13 +46,23 @@ class ReservasController extends Controller
         $this->validate($request, [
             'fecha' => 'required',
             'turno' => 'required',  
-            'iduser' => 'required', 
-            'idpago' => 'required',           
+            'tipo_pago' => 'required',     
         ]);
+
+        $pago = new Pagos();
+        $pago->tipo_pago=$request->tipo_pago;
+        $pago->monto_total=0;
+        $pago->fecha=now();
+        $pago->save();
+
         $reserva= new Reservas($request->all());
-            
-        $reserva->timestamps = false;    
+        $user = auth()->user();
+        $reserva->iduser=$user->id;
+        $reserva->idpago=$pago->id;
+        $reserva->timestamps = false; 
         $reserva->save();
+
+
         return redirect()->route('reservas.index');
     }
 
@@ -88,8 +101,8 @@ class ReservasController extends Controller
     {
         Pagina::contarPagina(\request()->path());
         $this->validate($request, [
-            'nombre' => 'required',
-            'precio' => 'required',
+            'fecha' => 'required',
+            'turno' => 'required',
         ]);
         $reserva = Reservas::find($id);      
         $reserva->timestamps = false;  

@@ -2,26 +2,26 @@
 
 @extends('layouts.nueva')
 
-@section('title', 'Canal 11-producto')
+@section('title', 'Canal 11-pago')
 
 @section('content_header')
-    <h1>Editar producto</h1>
+    <h1>Editar pago</h1>
 @stop
 
 @section('content')
     <div class="card">
         <div class="card-body">
-            <form action="{{ route('productos.update', $producto) }}" method="post">
+            <form action="{{ route('pagos.update', $pago) }}" method="post">
                 @csrf
                 @method('put')
                 <div class="row g-2">                    
 
                     <div class="col-6 position-relative">
-                        <label for="nombre">Ingrese el nombre de la producto</label>
-                        <input type="text" name="nombre" class="form-control"
-                            value="{{ old('nombre', $producto->nombre) }}">
+                        <label for="tipo_pago">Ingrese tipo pago</label>
+                        <input type="text" name="tipo_pago" class="form-control"
+                            value="{{ old('tipo_pago', $pago->tipo_pago) }}">
                         <br>
-                        @error('nombre')
+                        @error('tipo_pago')
                             <small class="text-danger">*{{ $message }}</small>
                             <br><br>
                         @enderror
@@ -29,18 +29,28 @@
 
                     
                     <div class="col-6 position-relative">
-                        <label for="precio">Ingrese su nro. celular</label>
-                        <input type="text" name="precio" class="form-control"
-                            value="{{ old('precio', $producto->precio) }}"> <br>
-                        @error('precio')
+                        <label for="monto_total">Ingrese el monto</label>
+                        <input type="text" name="monto_total" class="form-control"
+                            value="{{ old('monto_total', $pago->monto_total) }}"> <br>
+                        @error('monto_total')
+                            <small class="text-danger">*{{ $message }}</small>
+                            <br><br>
+                        @enderror
+                    </div>
+
+                    <div class="col-6 position-relative">
+                        <label for="fecha">Ingrese la fecha</label>
+                        <input type="date" name="fecha" class="form-control"
+                            value="{{ old('fecha', $pago->fecha) }}"> <br>
+                        @error('fecha')
                             <small class="text-danger">*{{ $message }}</small>
                             <br><br>
                         @enderror
                     </div>
                 </div>
-                <button class="btn btn-sm submit-b" type="submit">Actualizar producto</button>
+                <button class="btn btn-sm submit-b" type="submit">Actualizar pago</button>
                 <button class="btn btn-sm volver-b">
-                    <a class="text-white button-editar" href="{{ route('productos.index') }}">volver</a>
+                    <a class="text-white button-editar" href="{{ route('pagos.index') }}">volver</a>
                 </button>
             </form>
         </div>

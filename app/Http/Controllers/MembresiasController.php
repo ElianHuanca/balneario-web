@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pagina;
 use App\Models\Membresias;
 use App\Models\Pagos;
+use App\Models\TiposMembresias;
 use Illuminate\Http\Request;
 
 class MembresiasController extends Controller
@@ -29,7 +30,8 @@ class MembresiasController extends Controller
     public function create()
     {
         Pagina::contarPagina(\request()->path());
-        return view('membresia.create');
+        $tipos=TiposMembresias::all();
+        return view('membresia.create',compact('tipos'));
     }
 
     /**
@@ -41,19 +43,26 @@ class MembresiasController extends Controller
     public function store(Request $request)
     {
         Pagina::contarPagina(\request()->path());
-        $this->validate($request, [
-            'fecha_ini' => 'required',
-            'fecha_fin' => 'required',
-            'iduser' => 'required',
+        $this->validate($request, [            
+            'tipo_pago' => 'required',
             'idtipomembresia' => 'required',
         ]);
         $pago = new Pagos();
-        $pago->tipo_pago='QR';
+        $pago->tipo_pago=$request->tipo_pago;
         $pago->monto_total=0;
-        $pago->fecha=$request->fecha_ini;
+        $pago->fecha=now();
         $pago->save();
         
-        $membresia = new Membresias($request->all());
+        $membresia = new Membresias();
+        $membresia->fecha_ini=now();        
+        $tipo = TiposMembresias::where('id', $request->idtipomembresia)->first();
+
+        $dias=$tipo->duracion * 30;
+        
+        $membresia->fecha_fin=now()->addDays($dias);
+        $membresia->idtipomembresia=$request->idtipomembresia;
+        $user = auth()->user();
+        $membresia->iduser=$user->id;
         $membresia->timestamps = false;
         $membresia->idpago=$pago->id;
         $membresia->save();
@@ -116,7 +125,14 @@ class MembresiasController extends Controller
      */
     public function destroy($id)
     {
+        $membresia=Membresias::find($id);
+        $pago=Pagos::where('id', $membresia->idpago)->first();      
+        
         Membresias::destroy($id);
+        if ($pago) {
+            $pago->delete(); 
+        }
+        //Pagos::destroy($pago->id);
         return redirect('membresias');
     }
 }

@@ -42,9 +42,9 @@
                                 <td>{{ $membresia->idtipomembresia }}</td>
                                 <td>{{ $membresia->idpago }}</td>
                                 <td>
-                                    <a class="btn btn-sm edit-b"
+                                    {{-- <a class="btn btn-sm edit-b"
                                         href="{{ route('membresias.edit', $membresia) }}">Editar</a>
-                                    <!-- <a class="btn btn-primary btn-sm" href="{{ route('membresias.show', $membresia->id) }}">Ver</a> -->
+                                    <!-- <a class="btn btn-primary btn-sm" href="{{ route('membresias.show', $membresia->id) }}">Ver</a> --> --}}
 
                                     <div style="display: inline-block">
                                         <form action="{{ route('membresias.destroy', $membresia->id) }}" method="POST">

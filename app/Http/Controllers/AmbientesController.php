@@ -87,7 +87,8 @@ class AmbientesController extends Controller
         Pagina::contarPagina(\request()->path());
         $this->validate($request, [
             'nombre' => 'required',
-            'precio' => 'required',
+            'precio' => 'required',   
+            'capacidad' => 'required',
         ]);
         $ambiente = Ambientes::find($id);      
         $ambiente->timestamps = false;  

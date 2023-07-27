@@ -2,26 +2,26 @@
 
 @extends('layouts.nueva')
 
-@section('title', 'Canal 11-producto')
+@section('title', 'Canal 11-reserva')
 
 @section('content_header')
-    <h1>Editar producto</h1>
+    <h1>Editar reserva</h1>
 @stop
 
 @section('content')
     <div class="card">
         <div class="card-body">
-            <form action="{{ route('productos.update', $producto) }}" method="post">
+            <form action="{{ route('reservas.update', $reserva) }}" method="post">
                 @csrf
                 @method('put')
                 <div class="row g-2">                    
 
                     <div class="col-6 position-relative">
-                        <label for="nombre">Ingrese el nombre de la producto</label>
-                        <input type="text" name="nombre" class="form-control"
-                            value="{{ old('nombre', $producto->nombre) }}">
+                        <label for="fecha">Ingrese fecha</label>
+                        <input type="date" name="fecha" class="form-control"
+                            value="{{ old('fecha', $reserva->fecha) }}">
                         <br>
-                        @error('nombre')
+                        @error('fecha')
                             <small class="text-danger">*{{ $message }}</small>
                             <br><br>
                         @enderror
@@ -29,18 +29,18 @@
 
                     
                     <div class="col-6 position-relative">
-                        <label for="precio">Ingrese su nro. celular</label>
-                        <input type="text" name="precio" class="form-control"
-                            value="{{ old('precio', $producto->precio) }}"> <br>
-                        @error('precio')
+                        <label for="turno">ingrese turno</label>
+                        <input type="text" name="turno" class="form-control"
+                            value="{{ old('turno', $reserva->turno) }}"> <br>
+                        @error('turno')
                             <small class="text-danger">*{{ $message }}</small>
                             <br><br>
                         @enderror
                     </div>
                 </div>
-                <button class="btn btn-sm submit-b" type="submit">Actualizar producto</button>
+                <button class="btn btn-sm submit-b" type="submit">Actualizar reserva</button>
                 <button class="btn btn-sm volver-b">
-                    <a class="text-white button-editar" href="{{ route('productos.index') }}">volver</a>
+                    <a class="text-white button-editar" href="{{ route('reservas.index') }}">volver</a>
                 </button>
             </form>
         </div>

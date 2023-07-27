@@ -34,22 +34,22 @@
 
 
                     <div class="col-6 position-relative">
-                        <label for="iduser">Ingrese el id del usuario</label>
-                        <input type="text" name="iduser" class="form-control"> <br>
-                        @error('iduser')
+                        <label for="tipo_pago">Ingrese el tipo de pago</label>
+                        <input type="text" name="tipo_pago" class="form-control"> <br>
+                        @error('tipo_pago')
                             <small class="text-danger">*{{ $message }}</small>
                             <br><br>
                         @enderror
                     </div>
 
-                    <div class="col-6 position-relative">
+                    {{-- <div class="col-6 position-relative">
                         <label for="idpago">Ingrese el id del pago</label>
                         <input type="text" name="idpago" class="form-control"> <br>
                         @error('idpago')
                             <small class="text-danger">*{{ $message }}</small>
                             <br><br>
                         @enderror
-                    </div>
+                    </div> --}}
 
                 </div>
 

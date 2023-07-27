@@ -86,8 +86,9 @@ class PagosController extends Controller
     {
         Pagina::contarPagina(\request()->path());
         $this->validate($request, [
-            'nombre' => 'required',
-            'precio' => 'required',
+            'tipo_pago' => 'required',
+            'monto_total' => 'required',  
+            'fecha' => 'required',
         ]);
         $pago = Pagos::find($id);      
         $pago->timestamps = false;  
