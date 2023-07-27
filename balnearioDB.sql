@@ -27,7 +27,23 @@ CREATE TABLE users(
   CONSTRAINT PK_USERS PRIMARY KEY(id)
 );
 
-INSERT INTO users VALUES(1,'9648312','Elian Huanca','huancacori@gmail.com',crypt('123456', gen_salt('bf')),'2000-05-02','Administrador');
+INSERT INTO public.users (ci,"name",email,"password",fecha_nacimiento,rol) VALUES
+	 ('9648312','Elian Huanca','huancacori@gmail.com','$2a$06$pgclrRqxAfx5gHwdgdVoy.6SdvlgYn3jIsQxsBZ6VCOX2U6IJKqny','2000-05-02','Administrador'),
+	 ('7538307','Aldo Huanca','Aldo_Huanca@gmail.com','$2a$06$jP.GE4ncd6l9prl72IQgve4N8iVXw7/IEaLkm2Znlr7iH5deLyW4O','1998-12-04','Empleado'),
+	 ('9648307','Isela Huanca','Isela_Huanca@gmail.com','$2a$06$L5Ry7U2u6KoAy7EBwpdN..hBAcUWUrn5Cd0ltiRtAFF3f1AjtVcyK','1995-03-25','Empleado'),
+	 ('9648313','Diana Paniagua','Diana_Paniagua@gmail.com','$2a$06$ZP91JRtTw.M3Si9PNVqyYOct1FFBu/ujfaXFdjEv8wFTmCD8905li','1998-04-29','Cliente'),
+	 ('1648314','Mary Choque','Mary_Choque@gmail.com','$2a$06$7zevnB9yFc4w6Vk14ijjZOtLS3Q0gycNZMtdIbku6lH7fIT1AcSQG','1990-01-05','Cliente'),
+	 ('2648308','Juan Perez','Juan_Perez@gmail.com','$2a$06$jqVuUpEZRn/KaYIzzA/AuekWex2/T3pHXIivCOOr27lZZgTc7VAxW','1985-02-12','Cliente'),
+	 ('3648315','Maria Garcia','Maria_Garcia@gmail.com','$2a$06$0VoD/5ISJnkmG9GwAKeuNuZCYhxrqpYRKKD04DO6KW3Nu3YMU/ZnG','1975-03-25','Cliente'),
+	 ('4648316','Carlos Rodriguez','Carlos_Rodriguez@gmail.com','$2a$06$u7xi8mbI4VRR5MfkpwBf6.DUZoV6LRwqJtadYj4WVvimTIGDoZUWS','1988-06-12','Cliente'),
+	 ('5648309','Ana Martinez','Ana_Martinez@gmail.com','$2a$06$IKk6gK0cxyHPvSolkzX1fuCrgyO2cJqj2e5Ro.n9bZ7JVgwdd8hTe','1999-03-23','Cliente'),
+	 ('6648317','Luis Gonzalez','Luis_Gonzalez@gmail.com','$2a$06$O1Xt1MoU6w/Mf.R91GZMI.MPj0AXRmdcLC60hLjmgh7nLIC0t/ba.','1988-07-19','Cliente'),
+	 ('7648318','Laura Sanchez','Laura_Sanchez@gmail.com','$2a$06$I0TZnhnjxnhqOp7TK/WtZelbi4kqWe6eaptqIamhrqw7Jed.c9RvC','1995-08-17','Cliente'),
+	 ('8648319','Jose Lopez','Jose_Lopez@gmail.com','$2a$06$BCyBoIvpZpJ7SJnfh5a.HuEAc0.vaj27//kCV/ddibfCwhAuWRaN6','1991-09-07','Cliente'),
+	 ('9648399','Sandra Ramirez','Sandra_Ramirez@gmail.com','$2a$06$fVpyag6tpPlrNJBNRjItW..99oE0g3iMWVq2v6LFIkLEjS06df3Em','2000-07-10','Cliente');
+
+
+/*INSERT INTO users VALUES(1,'9648312','Elian Huanca','huancacori@gmail.com',crypt('123456', gen_salt('bf')),'2000-05-02','Administrador');
 INSERT INTO users VALUES(2,'7538307','Aldo Huanca','Aldo_Huanca@gmail.com',crypt('123456', gen_salt('bf')),'1998-12-04','Empleado');
 INSERT INTO users VALUES(3,'9648307','Isela Huanca','Isela_Huanca@gmail.com',crypt('123456', gen_salt('bf')),'1995-03-25','Empleado');
 INSERT INTO users VALUES(4,'9648313','Diana Paniagua','Diana_Paniagua@gmail.com',crypt('123456', gen_salt('bf')),'1998-04-29','Cliente');
@@ -39,7 +55,7 @@ INSERT INTO users VALUES(9,'5648309','Ana Martinez','Ana_Martinez@gmail.com',cry
 INSERT INTO users VALUES(10,'6648317','Luis Gonzalez','Luis_Gonzalez@gmail.com',crypt('123456', gen_salt('bf')),'1988-07-19','Cliente');
 INSERT INTO users VALUES(11,'7648318','Laura Sanchez','Laura_Sanchez@gmail.com',crypt('123456', gen_salt('bf')),'1995-08-17','Cliente');
 INSERT INTO users VALUES(12,'8648319','Jose Lopez','Jose_Lopez@gmail.com',crypt('123456', gen_salt('bf')),'1991-09-07','Cliente');
-INSERT INTO users VALUES(13,'9648300','Sandra Ramirez','Sandra_Ramirez@gmail.com',crypt('123456', gen_salt('bf')),'1998-07-10','Cliente');
+INSERT INTO users VALUES(13,'9648300','Sandra Ramirez','Sandra_Ramirez@gmail.com',crypt('123456', gen_salt('bf')),'1998-07-10','Cliente');*/
 
 /*CREATE TABLE users(
   id serial not null,
@@ -72,13 +88,13 @@ CREATE TABLE tiposMembresias(
 	nombre varchar(100),
 	descripcion text,
 	precio FLOAT,
-	duracion varchar(50),
+	duracion int,
 	CONSTRAINT PK_TIPOSMEMBRESIAS PRIMARY KEY(id)
 );
 
-INSERT INTO tiposMembresias VALUES(1,'BRONCE','10 Entradas',150,'3 Meses');
-INSERT INTO tiposMembresias VALUES(2,'PLATA','15 Entradas, Descuento 30% De Alquier de ambiente',400,'6 Meses');
-INSERT INTO tiposMembresias VALUES(3,'ORO','20 Entradas, Descuento 30% De Alquier de ambiente, Descuento 40% De Consumi de Comida y Bebidas',800,'9 Meses');
+INSERT INTO tiposMembresias VALUES(1,'BRONCE','10 Entradas',150, 3);
+INSERT INTO tiposMembresias VALUES(2,'PLATA','15 Entradas, Descuento 30% De Alquier de ambiente',400,6);
+INSERT INTO tiposMembresias VALUES(3,'ORO','20 Entradas, Descuento 30% De Alquier de ambiente, Descuento 40% De Consumi de Comida y Bebidas',800,9);
 
 CREATE TABLE pagos(
 	id serial not null,
@@ -210,6 +226,7 @@ CREATE TABLE detalle_reservas(
 	CONSTRAINT FK_RESERVAS FOREIGN KEY(idReserva) REFERENCES reservas(id),
 	CONSTRAINT FK_AMBIENTES FOREIGN KEY(idAmbiente) REFERENCES ambientes(id)
 );
+
 
 CREATE OR REPLACE FUNCTION update_pago_monto2()
 RETURNS TRIGGER AS $$
@@ -518,6 +535,18 @@ CREATE TABLE permiso2(
 );
 
 INSERT INTO permiso2 VALUES(1,1,'Elian Huanca','2023-01-01','2026-01-01',true);
+INSERT INTO permiso2 VALUES(2,2,'Aldo Huanca','2023-01-01','2026-01-01',true);
+INSERT INTO permiso2 VALUES(3,2,'Isela Huanca','2023-01-01','2026-01-01',true);
+INSERT INTO permiso2 VALUES(4,3,'Diana Paniagua','2023-01-01','2026-01-01',true);
+INSERT INTO permiso2 VALUES(5,3,'Mary Choque','2023-01-01','2026-01-01',true);
+INSERT INTO permiso2 VALUES(6,3,'Juan Perez','2023-01-01','2026-01-01',true);
+INSERT INTO permiso2 VALUES(7,3,'Maria Garcia','2023-01-01','2026-01-01',true);
+INSERT INTO permiso2 VALUES(8,3,'Carlos Rodriguez','2023-01-01','2026-01-01',true);
+INSERT INTO permiso2 VALUES(9,3,'Ana Martinez','2023-01-01','2026-01-01',true);
+INSERT INTO permiso2 VALUES(10,3,'Luis Gonzalez','2023-01-01','2026-01-01',true);
+INSERT INTO permiso2 VALUES(11,3,'Laura Sanchez','2023-01-01','2026-01-01',true);
+INSERT INTO permiso2 VALUES(12,3,'Jose Lopez','2023-01-01','2026-01-01',true);
+INSERT INTO permiso2 VALUES(13,3,'Sandra Ramirez','2023-01-01','2026-01-01',true);
 
 SELECT setval(pg_get_serial_sequence('users', 'id'), coalesce(max(id), 0) + 1, false) FROM users;
 SELECT setval(pg_get_serial_sequence('tiposMembresias', 'id'), coalesce(max(id), 0) + 1, false) FROM tiposMembresias;
@@ -554,4 +583,5 @@ DROP TABLE IF EXISTS pagos;
 DROP TABLE IF EXISTS tiposMembresias;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS comandos;
+
 

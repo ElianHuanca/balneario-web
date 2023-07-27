@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pagina;
+use App\Models\TiposMembresias;
 use Illuminate\Http\Request;
 
 class TiposMembresiasController extends Controller
@@ -13,7 +15,9 @@ class TiposMembresiasController extends Controller
      */
     public function index()
     {
-        //
+        Pagina::contarPagina(\request()->path());
+        $tiposMembresias = TiposMembresias::all();
+        return view('tipomembresia.index', compact('tiposMembresias'));
     }
 
     /**
@@ -23,7 +27,8 @@ class TiposMembresiasController extends Controller
      */
     public function create()
     {
-        //
+        Pagina::contarPagina(\request()->path());
+        return view('tipomembresia.create');
     }
 
     /**
@@ -34,7 +39,18 @@ class TiposMembresiasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Pagina::contarPagina(\request()->path());
+
+        $this->validate($request, [
+            'nombre' => 'required',
+            'descripcion' => 'required',
+            'precio' => 'required',
+            'duracion' => 'required',
+        ]);
+
+        $tipomembresia = new TiposMembresias($request->all());
+        $tipomembresia->save();
+        return redirect()->route('tiposMembresias.index');
     }
 
     /**
@@ -56,7 +72,9 @@ class TiposMembresiasController extends Controller
      */
     public function edit($id)
     {
-        //
+        Pagina::contarPagina(\request()->path());
+        $tipomembresia = TiposMembresias::findOrFail($id);
+        return view('tipomembresia.edit', compact('tipomembresia'));
     }
 
     /**
@@ -68,7 +86,17 @@ class TiposMembresiasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Pagina::contarPagina(\request()->path());
+        $this->validate($request, [
+            'nombre' => 'required',
+            'descripcion' => 'required',
+            'precio' => 'required',
+            'duracion' => 'required',
+        ]);
+        $tipomembresia = TiposMembresias::find($id);        
+        $tipomembresia->update($request->all());
+        $tipomembresia->save();
+        return redirect()->route('tiposMembresias.index');
     }
 
     /**
@@ -79,6 +107,7 @@ class TiposMembresiasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        TiposMembresias::destroy($id);
+        return redirect('tiposMembresias');
     }
 }

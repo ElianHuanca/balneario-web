@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ambientes;
+use App\Models\Pagina;
+use App\Models\DetalleReservas;
 use Illuminate\Http\Request;
 
 class DetalleReservasController extends Controller
@@ -13,7 +16,9 @@ class DetalleReservasController extends Controller
      */
     public function index()
     {
-        //
+        Pagina::contarPagina(\request()->path());
+        $detalleReservas = DetalleReservas::all();
+        return view('detalle_reserva.index', compact('detalleReservas'));
     }
 
     /**
@@ -23,7 +28,9 @@ class DetalleReservasController extends Controller
      */
     public function create()
     {
-        //
+        Pagina::contarPagina(\request()->path());
+        $ambientes = Ambientes::all();
+        return view('detalle_reserva.create',compact('ambientes'));
     }
 
     /**
@@ -34,7 +41,15 @@ class DetalleReservasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Pagina::contarPagina(\request()->path());
+        $this->validate($request, [
+            'idreserva' => 'required',
+            'idambiente' => 'required',            
+        ]);
+        $detalleReserva= new DetalleReservas($request->all());    
+        $detalleReserva->timestamps = false;    
+        $detalleReserva->save();
+        return redirect()->route('detalle_reservas.index');
     }
 
     /**
@@ -56,7 +71,10 @@ class DetalleReservasController extends Controller
      */
     public function edit($id)
     {
-        //
+        Pagina::contarPagina(\request()->path());
+        $detalleReserva = DetalleReservas::findOrFail($id);
+        $ambientes = Ambientes::all();
+        return view('detalle_reserva.edit', compact('detalleReserva','ambientes'));
     }
 
     /**
@@ -68,7 +86,16 @@ class DetalleReservasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Pagina::contarPagina(\request()->path());
+        $this->validate($request, [
+            'idreserva' => 'required',
+            'idambiente' => 'required',
+        ]);
+        $detalleReserva = DetalleReservas::find($id);      
+        $detalleReserva->timestamps = false;  
+        $detalleReserva->update($request->all()); 
+        $detalleReserva->save(); 
+        return redirect()->route('detalle_reservas.index');
     }
 
     /**
@@ -79,6 +106,7 @@ class DetalleReservasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DetalleReservas::destroy($id);
+        return redirect('detalle_reservas');
     }
 }

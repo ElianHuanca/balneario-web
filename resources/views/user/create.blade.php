@@ -2,20 +2,30 @@
 
 @extends('layouts.nueva')
 
-@section('title', 'Canal 11-usuario')
+@section('title', 'Balneario-user')
 
 @section('content_header')
-    <h1>Nueva usuario</h1>
+    <h1>Nuevo usuario</h1>
 @stop
 
 @section('content')
     <div class="card">
         <div class="card-body">
-            <form action="{{ route('usuarios.store') }}" method="post">
+            <form action="{{ route('users.store') }}" method="post">
                 @csrf
                 <div class="row g-2">
+
                     <div class="col-12 position-relative">
-                        <label for="name">Ingrese el nombre de la usuario</label>
+                        <label for="ci">Ingrese el ci</label>
+                        <input type="text" name="ci" class="form-control"> <br>
+                        @error('ci')
+                            <small class="text-danger">*{{ $message }}</small>
+                            <br><br>
+                        @enderror
+                    </div>
+
+                    <div class="col-12 position-relative">
+                        <label for="name">Ingrese el nombre</label>
                         <input type="text" name="name" class="form-control"> <br>
                         @error('name')
                             <small class="text-danger">*{{ $message }}</small>
@@ -41,22 +51,14 @@
                     </div>
 
                     <div class="col-6 position-relative">
-                        <label for="id_persona">Seleccione a una persona para este usuario</label>
-                        <select name="id_persona" id="id_persona" class="form-control">
-                            @if (count($personas) > 0)
-                                <option value="">--Selecione una persona--</option>
-                                @foreach ($personas as $persona)
-                                    <option value="{{ $persona->id }}">{{ $persona->nombre }}</option>
-                                @endforeach
-                            @else
-                                <option value="">--Registre una persona primero--</option>
-                            @endif
-                        </select>
-                        @error('id_persona')
+                        <label for="fecha_nacimiento">Ingrese su fecha nacimiento</label>
+                        <input type="date" name="fecha_nacimiento" class="form-control"> <br>
+                        @error('fecha_nacimiento')
                             <small class="text-danger">*{{ $message }}</small>
                             <br><br>
                         @enderror
                     </div>
+                    
                     <div class="col-6 position-relative">
                         <label for="id_rol">Seleccione un rol</label>
                         <select name="id_rol" id="id_rol" class="form-control">
@@ -65,7 +67,7 @@
                                 <option value="{{ $rol->id }}">{{ $rol->nombre }}</option>
                             @endforeach
                         </select>
-                        </select>
+                        
                         @error('id_rol')
                             <small class="text-danger">*{{ $message }}</small>
                             <br><br>
@@ -73,9 +75,9 @@
                     </div>
                 </div>
                 <br>
-                <button class="btn btn-sm submit-b" type="submit">Registrar usuario</button>
+                <button class="btn btn-sm submit-b" type="submit">Registrar user</button>
                 <button class="btn btn-sm volver-b">
-                    <a class="text-white button-editar" href="{{ route('usuarios.index') }}">volver</a>
+                    <a class="text-white button-editar" href="{{ route('users.index') }}">volver</a>
                 </button>
             </form>
         </div>

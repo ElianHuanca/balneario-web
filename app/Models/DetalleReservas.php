@@ -11,7 +11,7 @@ class DetalleReservas extends Model
     public $timestamps = false;
     protected $table = 'detalle_reservas';
     protected $fillable = [
-        'idReserva',
-        'idAmbiente'
+        'idreserva',
+        'idambiente'
     ];
 }
