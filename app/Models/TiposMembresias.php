@@ -9,7 +9,7 @@ class TiposMembresias extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    protected $table = 'tiposMembresias';
+    protected $table = 'tiposmembresias';
     protected $fillable = [
         'nombre',
         'descripcion',

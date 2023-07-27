@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\ActivoController;
-use App\Http\Controllers\AmbienteController;
 use App\Http\Controllers\AmbientesController;
 use App\Http\Controllers\CategoriaActivoController;
 use App\Http\Controllers\DetalleReservasController;
@@ -47,8 +46,9 @@ Route::resource('activos', ActivoController::class)->names('activos');
 //Route::resource('ambientes', AmbienteController::class)->names('ambientes');
 Route::resource('mantenimientos', MantenimientoController::class)->names('mantenimientos');
 Route::resource('traslados', TrasladoController::class)->names('traslados');
-Route::resource('usuarios', UserController::class)->names('usuarios');
+Route::resource('users', UserController::class)->names('users');
 Route::resource('roles', RoleController::class)->names('roles');
+
 
 Route::resource('productos', ProductoController::class)->names('productos');
 Route::resource('detalle_reservas', DetalleReservasController::class)->names('detalle_reservas');

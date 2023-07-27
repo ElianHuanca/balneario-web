@@ -23,15 +23,14 @@ class UserController extends Controller
     public function index()
     {
         Pagina::contarPagina(\request()->path());
-        $usuarios = DB::table('users as u')
-        ->select('u.id', 'u.name', 'u.email', 'p.nombre as nombrePersona', 'r.nombre as rolUser')
-        ->join('persona as p', 'u.id_persona', '=', 'p.id')
+        $users = DB::table('users as u')
+        ->select('u.id','u.ci' ,'u.name', 'u.email','u.fecha_nacimiento', 'r.nombre as rolUser')        
         ->join('permiso2 as p2', 'p2.id_user', '=','u.id' )
         ->join('rol as r','r.id','=','p2.id_rol')
         ->get();
         $this->getRolUserAuthenticated();
         // dd($usuarios);
-        return view('usuario.index', compact('usuarios'));
+        return view('user.index', compact('users'));
     }
 
     /**
@@ -43,13 +42,9 @@ class UserController extends Controller
     {
         Pagina::contarPagina(\request()->path());
         // $personas = Persona::all();
-        $personas = DB::select(
-            "SELECT p.* 
-            FROM persona p 
-            LEFT JOIN users u ON p.id = u.id_persona 
-            WHERE u.id_persona IS NULL"); //devuelve solo personas sin usuarios
+        //devuelve solo personas sin usuarios
         $roles = Rol::all();
-        return view('usuario.create',compact('personas','roles'));
+        return view('user.create',compact('roles'));
         //
     }
 
@@ -63,18 +58,20 @@ class UserController extends Controller
     {
         Pagina::contarPagina(\request()->path());
         $this->validate($request, [
-            'name' => "required|unique:users",
+            'ci' => "required|unique:users",
+            'name' => "required",
             'email' => "required|unique:users",
             'password' => 'required',
-            'id_persona' => 'required',
+            'fecha_nacimiento'=> "required",
             'id_rol' => "required"
         ]);
         $usuario = new User();
+        $usuario->ci = $request->ci;
         $usuario->name = $request->name;
         $usuario->email = $request->email;
-        $usuario->password = Hash::make($request->password);
-        $usuario->id_persona = $request->id_persona;
-        $usuario->timestamps = true;
+        $usuario->password = Hash::make($request->password);        
+        $usuario->fecha_nacimiento = $request->fecha_nacimiento;
+        $usuario->timestamps = false;
         $usuario->save();
 
         $id_user = $usuario->id;
@@ -88,7 +85,7 @@ class UserController extends Controller
         $permiso2->estado  = TRUE;
         $permiso2->timestamps = false;
         $permiso2->save();
-        return redirect()->route('usuarios.index');
+        return redirect()->route('users.index');
 
     }
 
@@ -113,16 +110,15 @@ class UserController extends Controller
     public function edit($id)
     {
         Pagina::contarPagina(\request()->path());
-        $usuario = User::find($id);
-        $persona= Persona::find($usuario->id_persona);
+        $user = User::find($id);
         $role= DB::table('permiso2')
         ->join('users','users.id','=','permiso2.id_user')
         ->join('rol','rol.id','=','permiso2.id_rol')
-        ->where('users.id','=',$usuario->id)
+        ->where('users.id','=',$user->id)
         ->select('rol.*')->get();
         //  dd($role);
         $roles = Rol::all();
-        return view('usuario.edit',compact('usuario','persona','role','roles'));
+        return view('user.edit',compact('user','role','roles'));
         
     }
 
@@ -138,18 +134,20 @@ class UserController extends Controller
         Pagina::contarPagina(\request()->path());
         
         $this->validate($request, [
-            'name' => "required|unique:users,name,$id",
+            'ci' => "required|unique:users,ci,$id",
+            'name' => "required",
             'email' => "required|unique:users,email,$id",
-            'password' => 'required',
-            'id_persona' => 'required',
+            //'password' => 'required',
+            'fecha_nacimiento' => 'required',     
             'id_rol' => "required"
         ]);
         
         $usuario = User::find($id);
+        $usuario->ci = $request->ci;
+        $usuario->fecha_nacimiento = $request->fecha_nacimiento;
         $usuario->name = $request->name;
         $usuario->email = $request->email;
-        $usuario->password = Hash::make($request->password);
-        $usuario->id_persona = $request->id_persona;
+        //$usuario->password = Hash::make($request->password);        
         $usuario->timestamps = false;
         $usuario->save();
         
@@ -171,7 +169,7 @@ class UserController extends Controller
         
         // dd($permiso2);
         $permiso2->save();
-        return redirect()->route('usuarios.index');
+        return redirect()->route('users.index');
     }
 
     /**
@@ -182,8 +180,12 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
+        $permiso=Permiso::where('id_user', $id)->first();
+        if ($permiso) {
+            $permiso->delete(); 
+        }
         User::destroy($id);
-        return redirect('usuarios');
+        return redirect('users');
     }
     public function getRolUserAuthenticated(){
         $user = Auth::user();

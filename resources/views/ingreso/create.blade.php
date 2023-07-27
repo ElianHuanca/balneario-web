@@ -2,7 +2,7 @@
 
 @extends('layouts.nueva')
 
-@section('title', 'Canal 11-ingreso')
+@section('title', 'Balneario-producto')
 
 @section('content_header')
     <h1>Nuevo ingreso</h1>
