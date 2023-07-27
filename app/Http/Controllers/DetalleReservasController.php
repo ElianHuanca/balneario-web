@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pagina;
-use App\Models\Producto;
 use Illuminate\Http\Request;
 
-class ProductoController extends Controller
+class DetalleReservasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +13,7 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        Pagina::contarPagina(\request()->path());
-        $productos = Producto::all();
-        return view('producto.index', compact('productos'));
+        //
     }
 
     /**
@@ -27,8 +23,7 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        Pagina::contarPagina(\request()->path());
-        return view('producto.create');
+        //
     }
 
     /**
@@ -39,15 +34,7 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        Pagina::contarPagina(\request()->path());
-        $this->validate($request, [
-            'nombre' => 'required',
-            'precio' => 'required',            
-        ]);
-        $producto= new Producto($request->all());    
-        $producto->timestamps = false;    
-        $producto->save();
-        return redirect()->route('productos.index');
+        //
     }
 
     /**
@@ -69,9 +56,7 @@ class ProductoController extends Controller
      */
     public function edit($id)
     {
-        Pagina::contarPagina(\request()->path());
-        $producto = Producto::findOrFail($id);
-        return view('producto.edit', compact('producto'));
+        //
     }
 
     /**
@@ -83,16 +68,7 @@ class ProductoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Pagina::contarPagina(\request()->path());
-        $this->validate($request, [
-            'nombre' => 'required',
-            'precio' => 'required',
-        ]);
-        $producto = Producto::find($id);      
-        $producto->timestamps = false;  
-        $producto->update($request->all()); 
-        $producto->save(); 
-        return redirect()->route('productos.index');
+        //
     }
 
     /**
@@ -103,7 +79,6 @@ class ProductoController extends Controller
      */
     public function destroy($id)
     {
-        Producto::destroy($id);
-        return redirect('productos');
+        //
     }
 }

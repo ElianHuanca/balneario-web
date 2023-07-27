@@ -5,14 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Rol extends Model
+class Ingresos extends Model
 {
     use HasFactory;
-    
-    protected $table = "rol";
+    public $timestamps = false;
+    protected $table = 'ingresos';
     protected $fillable = [
-        "nombre",
-        "descripcion",
-        "estado"
+        'fecha',
+        'iduser'
     ];
 }

@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pagina;
-use App\Models\Producto;
+use App\Models\Ambientes;
 use Illuminate\Http\Request;
 
-class ProductoController extends Controller
+class AmbientesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class ProductoController extends Controller
     public function index()
     {
         Pagina::contarPagina(\request()->path());
-        $productos = Producto::all();
-        return view('producto.index', compact('productos'));
+        $ambientes = Ambientes::all();
+        return view('ambiente.index', compact('ambientes'));
     }
 
     /**
@@ -28,7 +28,7 @@ class ProductoController extends Controller
     public function create()
     {
         Pagina::contarPagina(\request()->path());
-        return view('producto.create');
+        return view('ambiente.create');
     }
 
     /**
@@ -44,10 +44,10 @@ class ProductoController extends Controller
             'nombre' => 'required',
             'precio' => 'required',            
         ]);
-        $producto= new Producto($request->all());    
-        $producto->timestamps = false;    
-        $producto->save();
-        return redirect()->route('productos.index');
+        $ambiente= new Ambientes($request->all());    
+        $ambiente->timestamps = false;    
+        $ambiente->save();
+        return redirect()->route('ambientes.index');
     }
 
     /**
@@ -70,8 +70,8 @@ class ProductoController extends Controller
     public function edit($id)
     {
         Pagina::contarPagina(\request()->path());
-        $producto = Producto::findOrFail($id);
-        return view('producto.edit', compact('producto'));
+        $ambiente = Ambientes::findOrFail($id);
+        return view('ambiente.edit', compact('ambiente'));
     }
 
     /**
@@ -88,11 +88,11 @@ class ProductoController extends Controller
             'nombre' => 'required',
             'precio' => 'required',
         ]);
-        $producto = Producto::find($id);      
-        $producto->timestamps = false;  
-        $producto->update($request->all()); 
-        $producto->save(); 
-        return redirect()->route('productos.index');
+        $ambiente = Ambientes::find($id);      
+        $ambiente->timestamps = false;  
+        $ambiente->update($request->all()); 
+        $ambiente->save(); 
+        return redirect()->route('ambientes.index');
     }
 
     /**
@@ -103,7 +103,7 @@ class ProductoController extends Controller
      */
     public function destroy($id)
     {
-        Producto::destroy($id);
-        return redirect('productos');
+        Ambientes::destroy($id);
+        return redirect('ambientes');
     }
 }

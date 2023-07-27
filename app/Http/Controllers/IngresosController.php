@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pagina;
-use App\Models\Producto;
+use App\Models\Ingresos;
 use Illuminate\Http\Request;
 
-class ProductoController extends Controller
+class IngresosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,9 @@ class ProductoController extends Controller
     public function index()
     {
         Pagina::contarPagina(\request()->path());
-        $productos = Producto::all();
-        return view('producto.index', compact('productos'));
+        $ingresos = Ingresos::all();
+        //var_dump($ingresos);
+        return view('ingreso.index', compact('ingresos'));
     }
 
     /**
@@ -28,7 +29,7 @@ class ProductoController extends Controller
     public function create()
     {
         Pagina::contarPagina(\request()->path());
-        return view('producto.create');
+        return view('ingreso.create');
     }
 
     /**
@@ -44,10 +45,10 @@ class ProductoController extends Controller
             'nombre' => 'required',
             'precio' => 'required',            
         ]);
-        $producto= new Producto($request->all());    
-        $producto->timestamps = false;    
-        $producto->save();
-        return redirect()->route('productos.index');
+        $ingreso= new Ingresos($request->all());    
+        $ingreso->timestamps = false;    
+        $ingreso->save();
+        return redirect()->route('ingresos.index');
     }
 
     /**
@@ -70,8 +71,8 @@ class ProductoController extends Controller
     public function edit($id)
     {
         Pagina::contarPagina(\request()->path());
-        $producto = Producto::findOrFail($id);
-        return view('producto.edit', compact('producto'));
+        $ingreso = Ingresos::findOrFail($id);
+        return view('ingreso.edit', compact('ingreso'));
     }
 
     /**
@@ -88,11 +89,11 @@ class ProductoController extends Controller
             'nombre' => 'required',
             'precio' => 'required',
         ]);
-        $producto = Producto::find($id);      
-        $producto->timestamps = false;  
-        $producto->update($request->all()); 
-        $producto->save(); 
-        return redirect()->route('productos.index');
+        $ingreso = Ingresos::find($id);      
+        $ingreso->timestamps = false;  
+        $ingreso->update($request->all()); 
+        $ingreso->save(); 
+        return redirect()->route('ingresos.index');
     }
 
     /**
@@ -103,7 +104,7 @@ class ProductoController extends Controller
      */
     public function destroy($id)
     {
-        Producto::destroy($id);
-        return redirect('productos');
+        Ingresos::destroy($id);
+        return redirect('ingresos');
     }
 }

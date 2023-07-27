@@ -12,8 +12,25 @@
                             @csrf
 
                             <div class="form-group row">
+                                <label for="ci"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('CI') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="ci" type="text"
+                                        class="form-control @error('ci') is-invalid @enderror" name="ci"
+                                        value="{{ old('ci') }}" required autocomplete="ci" autofocus>
+
+                                    @error('ci')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
                                 <label for="name"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Nombre Completo') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text"
@@ -43,20 +60,8 @@
                                     @enderror
                                 </div>
                             </div>
+                        
 
-                            <div class="form-group row">
-                                <label for="persona"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('persona') }}</label>
-                                <div class="col-md-6">
-                                   aquí iría un select para las personas 
-                                    
-                                    {{-- <select name="id_persona" class="form-select form-control" aria-label="size 3 select example">
-                                        @foreach ($personas as $persona)
-                                            <option value="{{$persona->id}}">{{$persona->nombre}}</option>                                            
-                                        @endforeach                                        
-                                    </select> --}}
-                                </div>
-                            </div>
 
                             <div class="form-group row">
                                 <label for="password"
@@ -82,6 +87,23 @@
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control"
                                         name="password_confirmation" required autocomplete="new-password">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="fecha_nacimiento"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Fecha Nacimiento') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="fecha_nacimiento" type="date"
+                                        class="form-control @error('fecha_nacimiento') is-invalid @enderror" name="fecha_nacimiento"
+                                        value="{{ old('fecha_nacimiento') }}" required autocomplete="fecha_nacimiento" autofocus>
+
+                                    @error('fecha_nacimiento')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
 

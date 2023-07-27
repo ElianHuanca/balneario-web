@@ -2,10 +2,10 @@
 
 @extends('layouts.nueva')
 
-@section('title', 'ambientes')
+@section('title', 'ingresos')
 
 @section('content_header')
-    <h1>Listado De ambientes</h1>
+    <h1>Listado De ingresos</h1>
 @stop
 @section('css')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
@@ -15,7 +15,7 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <a class="btn btn-primary" href="{{ route('ambientes.create') }}">Nueva ambiente</a>
+            <a class="btn btn-primary" href="{{ route('ingresos.create') }}">Nueva ingreso</a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -24,26 +24,24 @@
                     <thead>
                         <tr>
                             <th>Id</th>                            
-                            <th>Nombre</th>
-                            <th>Precio</th>
-                            <th>capacidad</th>
+                            <th>fecha</th>
+                            <th>idUser</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($ambientes as $ambiente)
+                        @foreach ($ingresos as $ingreso)
                             <tr>
-                                <td>{{ $ambiente->id }}</td>                                
-                                <td>{{ $ambiente->nombre }}</td>
-                                <td>{{ $ambiente->precio }}</td>
-                                <td>{{ $ambiente->capacidad }}</td>
+                                <td>{{ $ingreso->id }}</td>                                
+                                <td>{{ $ingreso->fecha }}</td>
+                                <td>{{ $ingreso->iduser }}</td>
                                 <td>
                                     <a class="btn btn-sm edit-b"
-                                        href="{{ route('ambientes.edit', $ambiente) }}">Editar</a>
-                                    <!-- <a class="btn btn-primary btn-sm" href="{{ route('ambientes.show', $ambiente->id) }}">Ver</a> -->
+                                        href="{{ route('ingresos.edit', $ingreso) }}">Editar</a>
+                                    <!-- <a class="btn btn-primary btn-sm" href="{{ route('ingresos.show', $ingreso->id) }}">Ver</a> -->
 
                                     <div style="display: inline-block">
-                                        <form action="{{ route('ambientes.destroy', $ambiente->id) }}" method="POST">
+                                        <form action="{{ route('ingresos.destroy', $ingreso->id) }}" method="POST">
                                             @csrf
                                             @method('delete')
                                             <button style="margin-right: 10px" type="submit"

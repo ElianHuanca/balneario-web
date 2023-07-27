@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Permiso;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -29,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/login';
 
     /**
      * Create a new controller instance.
@@ -50,9 +51,11 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
+            'ci' => ['required'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:4', 'confirmed'],
+            'fecha_nacimiento'=> ['required'],
         ]);
     }
 
@@ -64,17 +67,24 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        // todo: hacer un select para elegir a la persona en la vista.
-        // todo: select para el permiso.
-        //todo: 
-        // dd($data);
-        return User::create([
+        $user= User::create([
+            'ci' => $data['ci'],
             'name' => $data['name'],
-            'email' => $data['email'],
-            //'permiso' => 'WRITE',
-            //'id_persona' => 1,
-            //'password' => $data['password'],
+            'email' => $data['email'],            
             'password' => Hash::make($data['password']),
+            'fecha_nacimiento' => $data['fecha_nacimiento'],
+            'rol' => 'Cliente'            
         ]);
+
+        $permiso = new Permiso();
+        $permiso->id_user=$user->id;
+        $permiso->id_rol=3;
+        $permiso->usuario=$user->name;
+        $permiso->fecha_inicio='2023-01-01';
+        $permiso->fecha_fin='2023-01-01';
+        $permiso->estado=true;
+        $permiso->save();
+
+        return $user;
     }
 }

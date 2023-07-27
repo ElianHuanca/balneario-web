@@ -48,6 +48,6 @@ class LoginController extends Controller
         $roles = DB::table('permiso')
             ->where('id_user', $user->id)
             ->where('usuario', $user->name)->get(); */
-        return 'name';
+        return 'email';
     }
 }

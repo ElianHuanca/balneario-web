@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Rol extends Model
+class Pagos extends Model
 {
     use HasFactory;
-    
-    protected $table = "rol";
+    public $timestamps = false;
+    protected $table = 'pagos';
     protected $fillable = [
-        "nombre",
-        "descripcion",
-        "estado"
+        'tipo_pago',   
+        'monto_total' ,
+        'fecha',        
     ];
 }

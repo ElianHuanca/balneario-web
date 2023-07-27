@@ -5,13 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Producto extends Model
+class Membresias extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    protected $table = 'productos';
+    protected $table = 'membresias';
     protected $fillable = [
-        'nombre',
-        'precio'
+        'fecha_ini',
+        'fecha_fin',
+        'idUser',
+        'idTipoMembresia',
+        'idPago'
     ];
 }
