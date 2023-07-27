@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pagina;
+use App\Models\Usos;
 use Illuminate\Http\Request;
 
 class UsosController extends Controller
@@ -13,7 +15,9 @@ class UsosController extends Controller
      */
     public function index()
     {
-        //
+        Pagina::contarPagina(\request()->path());
+        $usos = Usos::all();
+        return view('uso.index', compact('usos'));
     }
 
     /**
@@ -23,7 +27,8 @@ class UsosController extends Controller
      */
     public function create()
     {
-        //
+        Pagina::contarPagina(\request()->path());
+        return view('uso.create');
     }
 
     /**
@@ -34,7 +39,18 @@ class UsosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Pagina::contarPagina(\request()->path());
+        $this->validate($request, [
+            /* 'fecha' => 'required', */
+            'cantidad' => 'required',        
+            'idproducto' => 'required', 
+            'idambiente' => 'required',     
+        ]);
+        $uso= new Usos($request->all());    
+        $uso->fecha=now();
+        $uso->timestamps = false;    
+        $uso->save();
+        return redirect()->route('usos.index');
     }
 
     /**
@@ -56,7 +72,9 @@ class UsosController extends Controller
      */
     public function edit($id)
     {
-        //
+        Pagina::contarPagina(\request()->path());
+        $uso = Usos::findOrFail($id);
+        return view('uso.edit', compact('uso'));
     }
 
     /**
@@ -68,7 +86,16 @@ class UsosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Pagina::contarPagina(\request()->path());
+        $this->validate($request, [
+            'nombre' => 'required',
+            'precio' => 'required',
+        ]);
+        $uso = Usos::find($id);      
+        $uso->timestamps = false;  
+        $uso->update($request->all()); 
+        $uso->save(); 
+        return redirect()->route('usos.index');
     }
 
     /**
@@ -79,6 +106,7 @@ class UsosController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Usos::destroy($id);
+        return redirect('usos');
     }
 }

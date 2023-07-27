@@ -24,8 +24,8 @@
                     <thead>
                         <tr>
                             <th>Id</th>                            
-                            <th>Nombre</th>
-                            <th>Precio</th>
+                            <th>nombre</th>
+                            <th>precio</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>

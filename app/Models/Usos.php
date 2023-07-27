@@ -13,7 +13,7 @@ class Usos extends Model
     protected $fillable = [
         'fecha',
         'cantidad',
-        'idProducto',
-        'idAmbiente'
+        'idproducto',
+        'idambiente'
     ];
 }

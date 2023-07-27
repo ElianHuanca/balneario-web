@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pagina;
+use App\Models\Pagos;
 use Illuminate\Http\Request;
 
 class PagosController extends Controller
@@ -13,7 +15,9 @@ class PagosController extends Controller
      */
     public function index()
     {
-        //
+        Pagina::contarPagina(\request()->path());
+        $pagos = Pagos::all();
+        return view('pago.index', compact('pagos'));
     }
 
     /**
@@ -23,7 +27,8 @@ class PagosController extends Controller
      */
     public function create()
     {
-        //
+        Pagina::contarPagina(\request()->path());
+        return view('pago.create');
     }
 
     /**
@@ -34,7 +39,16 @@ class PagosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Pagina::contarPagina(\request()->path());
+        $this->validate($request, [
+            'tipo_pago' => 'required',
+            'monto_total' => 'required',  
+            'fecha' => 'required',          
+        ]);
+        $pago= new Pagos($request->all());    
+        $pago->timestamps = false;    
+        $pago->save();
+        return redirect()->route('pagos.index');
     }
 
     /**
@@ -56,7 +70,9 @@ class PagosController extends Controller
      */
     public function edit($id)
     {
-        //
+        Pagina::contarPagina(\request()->path());
+        $pago = Pagos::findOrFail($id);
+        return view('pago.edit', compact('pago'));
     }
 
     /**
@@ -68,7 +84,16 @@ class PagosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Pagina::contarPagina(\request()->path());
+        $this->validate($request, [
+            'nombre' => 'required',
+            'precio' => 'required',
+        ]);
+        $pago = Pagos::find($id);      
+        $pago->timestamps = false;  
+        $pago->update($request->all()); 
+        $pago->save(); 
+        return redirect()->route('pagos.index');
     }
 
     /**
@@ -79,6 +104,7 @@ class PagosController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Pagos::destroy($id);
+        return redirect('pagos');
     }
 }

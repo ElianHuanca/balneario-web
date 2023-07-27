@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pagina;
+use App\Models\Reservas;
 use Illuminate\Http\Request;
 
 class ReservasController extends Controller
@@ -13,7 +15,9 @@ class ReservasController extends Controller
      */
     public function index()
     {
-        //
+        Pagina::contarPagina(\request()->path());
+        $reservas = Reservas::all();
+        return view('reserva.index', compact('reservas'));
     }
 
     /**
@@ -23,7 +27,8 @@ class ReservasController extends Controller
      */
     public function create()
     {
-        //
+        Pagina::contarPagina(\request()->path());
+        return view('reserva.create');
     }
 
     /**
@@ -34,7 +39,18 @@ class ReservasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Pagina::contarPagina(\request()->path());
+        $this->validate($request, [
+            'fecha' => 'required',
+            'turno' => 'required',  
+            'iduser' => 'required', 
+            'idpago' => 'required',           
+        ]);
+        $reserva= new Reservas($request->all());
+            
+        $reserva->timestamps = false;    
+        $reserva->save();
+        return redirect()->route('reservas.index');
     }
 
     /**
@@ -56,7 +72,9 @@ class ReservasController extends Controller
      */
     public function edit($id)
     {
-        //
+        Pagina::contarPagina(\request()->path());
+        $reserva = Reservas::findOrFail($id);
+        return view('reserva.edit', compact('reserva'));
     }
 
     /**
@@ -68,7 +86,16 @@ class ReservasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Pagina::contarPagina(\request()->path());
+        $this->validate($request, [
+            'nombre' => 'required',
+            'precio' => 'required',
+        ]);
+        $reserva = Reservas::find($id);      
+        $reserva->timestamps = false;  
+        $reserva->update($request->all()); 
+        $reserva->save(); 
+        return redirect()->route('reservas.index');
     }
 
     /**
@@ -79,6 +106,7 @@ class ReservasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Reservas::destroy($id);
+        return redirect('reservas');
     }
 }

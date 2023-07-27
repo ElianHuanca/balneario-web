@@ -2,10 +2,10 @@
 
 @extends('layouts.nueva')
 
-@section('title', 'ingresos')
+@section('title', 'membresias')
 
 @section('content_header')
-    <h1>Listado De ingresos</h1>
+    <h1>Listado De membresias</h1>
 @stop
 @section('css')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
@@ -15,7 +15,7 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <a class="btn btn-primary" href="{{ route('ingresos.create') }}">Nueva ingreso</a>
+            <a class="btn btn-primary" href="{{ route('membresias.create') }}">Nueva membresia</a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -23,26 +23,31 @@
                 <table class="table table-striped table-bordered mt-4" id="table">
                     <thead>
                         <tr>
-                            <th>Id</th>
-                            <th>fecha</th>
+                            <th>Id</th>                            
+                            <th>fecha_ini</th>
+                            <th>fecha_fin</th>
                             <th>iduser</th>
+                            <th>idtipomembresia</th>
+                            <th>idpago</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($ingresos as $ingreso)
+                        @foreach ($membresias as $membresia)
                             <tr>
-                                <td>{{ $ingreso->id }}</td>                                
-                                <td>{{ $ingreso->fecha }}</td>
-                                <td>{{ $ingreso->iduser }}</td>
-                               
+                                <td>{{ $membresia->id }}</td>                                
+                                <td>{{ $membresia->fecha_ini }}</td>
+                                <td>{{ $membresia->fecha_fin }}</td>
+                                <td>{{ $membresia->iduser }}</td>
+                                <td>{{ $membresia->idtipomembresia }}</td>
+                                <td>{{ $membresia->idpago }}</td>
                                 <td>
                                     <a class="btn btn-sm edit-b"
-                                        href="{{ route('ingresos.edit', $ingreso) }}">Editar</a>
-                                    <!-- <a class="btn btn-primary btn-sm" href="{{ route('ingresos.show', $ingreso->id) }}">Ver</a> -->
+                                        href="{{ route('membresias.edit', $membresia) }}">Editar</a>
+                                    <!-- <a class="btn btn-primary btn-sm" href="{{ route('membresias.show', $membresia->id) }}">Ver</a> -->
 
                                     <div style="display: inline-block">
-                                        <form action="{{ route('ingresos.destroy', $ingreso->id) }}" method="POST">
+                                        <form action="{{ route('membresias.destroy', $membresia->id) }}" method="POST">
                                             @csrf
                                             @method('delete')
                                             <button style="margin-right: 10px" type="submit"

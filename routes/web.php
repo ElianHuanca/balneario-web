@@ -57,7 +57,7 @@ Route::resource('pagos', PagosController::class)->names('pagos');
 Route::resource('reservas', ReservasController::class)->names('reservas');
 Route::resource('membresias', MembresiasController::class)->names('membresias');
 Route::resource('ambientes', AmbientesController::class)->names('ambientes');
-Route::resource('usos', UsosControllerController::class)->names('usos');
+Route::resource('usos', UsosController::class)->names('usos');
 Route::resource('ingresos', IngresosController::class)->names('ingresos');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

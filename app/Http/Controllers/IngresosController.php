@@ -42,8 +42,8 @@ class IngresosController extends Controller
     {
         Pagina::contarPagina(\request()->path());
         $this->validate($request, [
-            'nombre' => 'required',
-            'precio' => 'required',            
+            'fecha' => 'required',
+            'iduser' => 'required',            
         ]);
         $ingreso= new Ingresos($request->all());    
         $ingreso->timestamps = false;    

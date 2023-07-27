@@ -13,8 +13,8 @@ class Membresias extends Model
     protected $fillable = [
         'fecha_ini',
         'fecha_fin',
-        'idUser',
-        'idTipoMembresia',
-        'idPago'
+        'iduser',
+        'idtipomembresia',
+        'idpago'
     ];
 }

@@ -13,7 +13,7 @@ class Reservas extends Model
     protected $fillable = [
         'fecha',
         'turno',
-        'idUser',
-        'idPago',        
+        'iduser',
+        'idpago',        
     ];
 }

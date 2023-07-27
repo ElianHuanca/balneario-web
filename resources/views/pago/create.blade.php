@@ -2,49 +2,49 @@
 
 @extends('layouts.nueva')
 
-@section('title', 'Canal 11-ambiente')
+@section('title', 'Canal 11-pago')
 
 @section('content_header')
-    <h1>Nuevo ambiente</h1>
+    <h1>Nuevo pago</h1>
 @stop
 
 @section('content')
     <div class="card">
         <div class="card-body">
-            <form action="{{ route('ambientes.store') }}" method="post">
+            <form action="{{ route('pagos.store') }}" method="post">
                 @csrf
                 <div class="row g-2">                    
                     <div class="col-6 position-relative">
-                        <label for="nombre">Ingrese el nombre del ambiente</label>
-                        <input type="text" name="nombre" class="form-control"> <br>
-                        @error('nombre')
+                        <label for="tipo_pago">Ingrese el tipo de pago</label>
+                        <input type="text" name="tipo_pago" class="form-control"> <br>
+                        @error('tipo_pago')
                             <small class="text-danger">*{{ $message }}</small>
                             <br><br>
                         @enderror
-                    </div>                    
-
+                    </div>   
+                    
                     <div class="col-6 position-relative">
-                        <label for="precio">Ingrese el Precio</label>
-                        <input type="text" name="precio" class="form-control"> <br>
-                        @error('precio')
+                        <label for="monto_total">Ingrese el monto total</label>
+                        <input type="text" name="monto_total" class="form-control"> <br>
+                        @error('monto_total')
                             <small class="text-danger">*{{ $message }}</small>
                             <br><br>
                         @enderror
                     </div>
 
                     <div class="col-6 position-relative">
-                        <label for="capacidad">Ingrese la capacidad</label>
-                        <input type="number" name="capacidad" class="form-control"> <br>
-                        @error('capacidad')
+                        <label for="fecha">Ingrese la fecha</label>
+                        <input type="date" name="fecha" class="form-control"> <br>
+                        @error('fecha')
                             <small class="text-danger">*{{ $message }}</small>
                             <br><br>
                         @enderror
                     </div>
                 </div>
 
-                <button class="btn btn-sm submit-b" type="submit">Registrar ambiente</button>
+                <button class="btn btn-sm submit-b" type="submit">Registrar pago</button>
                 <button class="btn btn-sm volver-b">
-                    <a class="text-white button-editar" href="{{ route('ambientes.index') }}">volver</a>
+                    <a class="text-white button-editar" href="{{ route('pagos.index') }}">volver</a>
                 </button>
             </form>
         </div>
